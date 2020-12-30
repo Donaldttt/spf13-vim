@@ -91,7 +91,9 @@
     " In your .vimrc.before.local file
     " list only the plugin groups you will use
     if !exists('g:spf13_bundle_groups')
-        let g:spf13_bundle_groups=['general', 'writing', 'neocomplete', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc',]
+        "let g:spf13_bundle_groups=['general', 'writing', 'neocomplete', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc',]
+        "let g:spf13_bundle_groups=['my_bundle', 'general', 'writing', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc',]
+        let g:spf13_bundle_groups=['my_bundle', 'general'] 
     endif
 
     " To override all the included bundles, add the following to your
@@ -99,43 +101,56 @@
     "   let g:override_spf13_bundles = 1
     if !exists("g:override_spf13_bundles")
 
+
+    " my bundles {
+        if count(g:spf13_bundle_groups, 'my_bundle')
+            " {
+            "Bundle 'neoclide/coc.nvim'
+            "let g:coc_global_extensions = ['coc-json', 'coc-pyright', 'coc-html', 'coc-clangd', 'coc-sh', 'coc-tsserver'] 
+            " }
+            Bundle 'codota/tabnine-vim'
+            " {
+            Bundle 'alvan/vim-closetag'
+            let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.js'
+
+            " }
+        endif
+    " }]
     " General {
         if count(g:spf13_bundle_groups, 'general')
-            Bundle 'scrooloose/nerdtree'
             Bundle 'altercation/vim-colors-solarized'
             Bundle 'spf13/vim-colors'
+            Bundle 'scrooloose/nerdtree'
             Bundle 'tpope/vim-surround'
-            Bundle 'tpope/vim-repeat'
+           " Bundle 'tpope/vim-repeat'
             Bundle 'rhysd/conflict-marker.vim'
+            " {
             Bundle 'jiangmiao/auto-pairs'
-            Bundle 'ctrlpvim/ctrlp.vim'
-            Bundle 'tacahiroy/ctrlp-funky'
-            Bundle 'terryma/vim-multiple-cursors'
-            Bundle 'vim-scripts/sessionman.vim'
+            let g:AutoPairs = {'(':')', '[':']', '{':'}'}
+            " }
+           " Bundle 'ctrlpvim/ctrlp.vim'
+           " Bundle 'tacahiroy/ctrlp-funky'
+            " {
+            Bundle 'mg979/vim-visual-multi'
+            " }
+           " Bundle 'vim-scripts/sessionman.vim'
             Bundle 'matchit.zip'
-            if (has("python") || has("python3")) && exists('g:spf13_use_powerline') && !exists('g:spf13_use_old_powerline')
-                Bundle 'Lokaltog/powerline', {'rtp':'/powerline/bindings/vim'}
-            elseif exists('g:spf13_use_powerline') && exists('g:spf13_use_old_powerline')
-                Bundle 'Lokaltog/vim-powerline'
-            else
-                Bundle 'vim-airline/vim-airline'
-                Bundle 'vim-airline/vim-airline-themes'
-            endif
-            Bundle 'powerline/fonts'
+           "Bundle 'vim-airline/vim-airline'
+            Bundle 'vim-airline/vim-airline-themes'
             Bundle 'bling/vim-bufferline'
             Bundle 'easymotion/vim-easymotion'
-            Bundle 'jistr/vim-nerdtree-tabs'
-            Bundle 'flazz/vim-colorschemes'
+           " Bundle 'jistr/vim-nerdtree-tabs'
+           " Bundle 'flazz/vim-colorschemes'
             Bundle 'mbbill/undotree'
             Bundle 'nathanaelkane/vim-indent-guides'
             if !exists('g:spf13_no_views')
                 Bundle 'vim-scripts/restore_view.vim'
             endif
-            Bundle 'mhinz/vim-signify'
-            Bundle 'tpope/vim-abolish.git'
+           " Bundle 'mhinz/vim-signify'
+           " Bundle 'tpope/vim-abolish.git'
             Bundle 'osyo-manga/vim-over'
-            Bundle 'kana/vim-textobj-user'
-            Bundle 'kana/vim-textobj-indent'
+           " Bundle 'kana/vim-textobj-user'
+           " Bundle 'kana/vim-textobj-indent'
             Bundle 'gcmt/wildfire.vim'
         endif
     " }
@@ -175,7 +190,7 @@
                 source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
             endif
         elseif count(g:spf13_bundle_groups, 'youcompleteme')
-            Bundle 'Valloric/YouCompleteMe'
+            "Bundle 'Valloric/YouCompleteMe'
             Bundle 'SirVer/ultisnips'
             Bundle 'honza/vim-snippets'
         elseif count(g:spf13_bundle_groups, 'neocomplcache')
