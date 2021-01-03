@@ -1189,3 +1189,8 @@
         endif
     endif
 " }
+
+" Fix file type error for typescript
+" {
+    autocmd BufNewFile,BufRead *.ts set filetype=typescript
+" }
