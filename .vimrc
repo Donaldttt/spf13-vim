@@ -330,6 +330,7 @@
     nnoremap Y y$
 
     set foldmethod=marker
+    set nofoldenable
     " Code folding options
     nmap <leader>f0 :set moldlevel=0<CR>
     nmap <leader>f1 :set foldlevel=1<CR>
