@@ -637,7 +637,7 @@
             endif
         endfor
     endfunction
-    " call InitializeDirectories()
+    call InitializeDirectories()
     " }
 
     " Initialize NERDTree as needed {
