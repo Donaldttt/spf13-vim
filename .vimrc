@@ -558,6 +558,7 @@
         " your .vimrc.before.local file:
         "   let g:spf13_consolidated_directory = <full path to desired directory>
         "   eg: let g:spf13_consolidated_directory = $HOME . '/.vim/'
+        let g:spf13_consolidated_directory = $HOME . '/.vim/.'
         if exists('g:spf13_consolidated_directory')
             let common_dir = g:spf13_consolidated_directory . prefix
         else
