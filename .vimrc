@@ -634,8 +634,18 @@
     command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
     " e.g. Grep current file for <search_term>: Shell grep -Hn <search_term> %
     " }
-
-" Fix file type error for typescript
+    
+" FIle type related
 " {
+" Fix file type error for typescript
     autocmd BufNewFile,BufRead *.ts set filetype=typescript
+
+    autocmd FileType c set foldmethod=syntax
 " }
+" 
+" Short Cut
+" {
+    
+
+" }
+"
