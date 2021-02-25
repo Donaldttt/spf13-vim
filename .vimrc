@@ -13,7 +13,7 @@
 "   recommend picking out the parts you want and understand.
 "
 "   You can find me at http://spf13.com
-"
+
 "   Copyright 2014 Steve Francia
 "
 "   Licensed under the Apache License, Version 2.0 (the "License");
@@ -641,6 +641,7 @@
     autocmd BufNewFile,BufRead *.ts set filetype=typescript
 
     autocmd FileType c set foldmethod=syntax
+    :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 " }
 " 
 " Short Cut
