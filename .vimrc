@@ -8,32 +8,8 @@
 "        |___/ .__/|_| |_|____/        \_/  |_|_| |_| |_|
 "            |_|
 "
-"   This is the personal .vimrc file of Steve Francia.
-"   While much of it is beneficial for general use, I would
-"   recommend picking out the parts you want and understand.
-"
-"   You can find me at http://spf13.com
-
-"   Copyright 2014 Steve Francia
-"
-"   Licensed under the Apache License, Version 2.0 (the "License");
-"   you may not use this file except in compliance with the License.
-"   You may obtain a copy of the License at
-"
-"       http://www.apache.org/licenses/LICENSE-2.0
-"
-"   Unless required by applicable law or agreed to in writing, software
-"   distributed under the License is distributed on an "AS IS" BASIS,
-"   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-"   See the License for the specific language governing permissions and
-"   limitations under the License.
-" }
-
-" Nachuan's personal setting {
-
-" }
-
-
+"   This is Nachuan's personal vim config fork from 
+"   spf13/spf13-vim (http://spf13.com)
 
 " Environment {
 
@@ -53,21 +29,6 @@
         set nocompatible        " Must be first line
         if !WINDOWS()
             set shell=/bin/sh
-        endif
-    " }
-
-    " Windows Compatible {
-        " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
-        " across (heterogeneous) systems easier.
-        if WINDOWS()
-          set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-        endif
-    " }
-    
-    " Arrow Key Fix {
-        " https://github.com/spf13/spf13-vim/issues/780
-        if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
-            inoremap <silent> <C-[>OC <RIGHT>
         endif
     " }
 
@@ -226,7 +187,7 @@
     set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
     set scrolljump=5                " Lines to scroll when cursor leaves screen
     set scrolloff=3                 " Minimum lines to keep above and below cursor
-    set foldenable                  " Auto fold code
+    "set foldenable                  " Auto fold code
 
 " }
 
@@ -312,7 +273,7 @@
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
 
-    set foldmethod=marker
+    set foldmethod=syntax
     set nofoldenable
     " Code folding options
     nmap <leader>f0 :set foldlevel=0<CR>
@@ -378,20 +339,7 @@
     " Easier formatting
     nnoremap <silent> <leader>q gwip
 
-    " FIXME: Revert this f70be548
-    " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
-    map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
-
-" }
-
 " Plugins {
-
-       " PIV {
-        if isdirectory(expand("~/.vim/bundle/PIV"))
-            let g:DisableAutoPHPFolding = 0
-            let g:PIVAutoClose = 0
-        endif
-    " }
 
     " Misc {
         if isdirectory(expand("~/.vim/bundle/nerdtree"))
@@ -399,49 +347,6 @@
         endif
         if isdirectory(expand("~/.vim/bundle/matchit.zip"))
             let b:match_ignorecase = 1
-        endif
-    " }
-
-
-    " OmniComplete {
-        " To disable omni complete, add the following to your .vimrc.before.local file:
-        "   let g:spf13_no_omni_complete = 1
-        let g:spf13_no_omni_complete = 1
-        if !exists('g:spf13_no_omni_complete')
-            if has("autocmd") && exists("+omnifunc")
-                autocmd Filetype *
-                    \if &omnifunc == "" |
-                    \setlocal omnifunc=syntaxcomplete#Complete |
-                    \endif
-            endif
-
-            hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-            hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-            hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
-
-            " Some convenient mappings
-            "inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-            if exists('g:spf13_map_cr_omni_complete')
-                inoremap <expr> <CR>     pumvisible() ? "\<C-y>" : "\<CR>"
-            endif
-            inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-            inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-            inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-            inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-
-            " Automatically open and close the popup menu / preview window
-            au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-            set completeopt=menu,preview,longest
-        endif
-    " }
-
-    " Ctags {
-        set tags=./tags;/,~/.vimtags
-
-        " Make tags placed in .git/tags file available in all levels of a repository
-        let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-        if gitroot != ''
-            let &tags = &tags . ',' . gitroot . '/.git/tags'
         endif
     " }
 
@@ -471,20 +376,6 @@
         let g:vim_json_syntax_conceal = 0
     " }
 
-    " PyMode {
-        " Disable if python support not present
-        if !has('python') && !has('python3')
-            let g:pymode = 0
-        endif
-
-        if isdirectory(expand("~/.vim/bundle/python-mode"))
-            let g:pymode_lint_checkers = ['pyflakes']
-            let g:pymode_trim_whitespaces = 0
-            let g:pymode_options = 0
-            let g:pymode_rope = 0
-        endif
-    " }
-
     " indent_guides {
         if isdirectory(expand("~/.vim/bundle/vim-indent-guides/"))
             let g:indent_guides_start_level = 2
@@ -511,30 +402,6 @@
             endif
         endif
     " }
-
-" }
-
-" GUI Settings {
-
-    " GVIM- (here instead of .gvimrc)
-    if has('gui_running')
-        set guioptions-=T           " Remove the toolbar
-        set lines=40                " 40 lines of text instead of 24
-        if !exists("g:spf13_no_big_font")
-            if LINUX() && has("gui_running")
-                set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
-            elseif OSX() && has("gui_running")
-                set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
-            elseif WINDOWS() && has("gui_running")
-                set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
-            endif
-        endif
-    else
-        if &term == 'xterm' || &term == 'screen'
-            set t_Co=256            " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
-        endif
-        "set term=builtin_ansi       " Make arrow and other keys work
-    endif
 
 " }
 
@@ -640,9 +507,9 @@
 " Fix file type error for typescript
     autocmd BufNewFile,BufRead *.ts set filetype=typescript
 
-    autocmd FileType c set foldmethod=syntax
     " leader s change occurence
     :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+    " leader num change tab
     nnoremap <Leader>1 :b1<CR>
     nnoremap <Leader>2 :b2<CR>
     nnoremap <Leader>3 :b3<CR>
@@ -652,12 +519,12 @@
     nnoremap <Leader>7 :b7<CR>
     nnoremap <Leader>8 :b8<CR>
     nnoremap <Leader>9 :b9<CR>
+    " fix problem that when I code C and I write a bracket { it automatically closes all subsequent folds, 
+    " and when I then close the bracket again with a }, vim automatically expands all subsequent folds
+    " {
+        autocmd InsertLeave,WinEnter * setlocal foldmethod=syntax
+        autocmd InsertEnter,WinLeave * setlocal foldmethod=manual
+    " }
 
 " }
 " 
-" Short Cut
-" {
-    
-
-" }
-"
