@@ -635,13 +635,24 @@
     " e.g. Grep current file for <search_term>: Shell grep -Hn <search_term> %
     " }
     
-" FIle type related
+" Custom
 " {
 " Fix file type error for typescript
     autocmd BufNewFile,BufRead *.ts set filetype=typescript
 
     autocmd FileType c set foldmethod=syntax
+    " leader s change occurence
     :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+    nnoremap <Leader>1 :b1<CR>
+    nnoremap <Leader>2 :b2<CR>
+    nnoremap <Leader>3 :b3<CR>
+    nnoremap <Leader>4 :b4<CR>
+    nnoremap <Leader>5 :b5<CR>
+    nnoremap <Leader>6 :b6<CR>
+    nnoremap <Leader>7 :b7<CR>
+    nnoremap <Leader>8 :b8<CR>
+    nnoremap <Leader>9 :b9<CR>
+
 " }
 " 
 " Short Cut
