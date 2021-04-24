@@ -1,24 +1,7 @@
 " Modeline and Notes {
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
-"                    __ _ _____              _
-"         ___ _ __  / _/ |___ /      __   __(_)_ __ ___
-"        / __| '_ \| |_| | |_ \ _____\ \ / /| | '_ ` _ \
-"        \__ \ |_) |  _| |___) |_____|\ V / | | | | | | |
-"        |___/ .__/|_| |_|____/        \_/  |_|_| |_| |_|
-"            |_|
-"
-"   This is the personal .vimrc.bundles file of Steve Francia.
-"   While much of it is beneficial for general use, I would
-"   recommend picking out the parts you want and understand.
-"
-"   This file imports the various plugins of spf13. If you
-"   wish to alter which groups are imported, see vimrc.before.
-"   If you wish to add or remove individual bundles, create
-"   ~/.vimrc.bundles.local and `Bundle` or `UnBundle` as needed
-"   from there.
-"
-"   You can find me at http://spf13.com
+"   This file imports the various plugins of spf13.
 " }
 
 " Environment {
@@ -26,30 +9,6 @@
     " Basics {
         set nocompatible        " Must be first line
         set background=dark     " Assume a dark background
-    " }
-
-    " Windows Compatible {
-        " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
-        " across (heterogeneous) systems easier.
-        if has('win32') || has('win64')
-          set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-
-          " Be nice and check for multi_byte even if the config requires
-          " multi_byte support most of the time
-          if has("multi_byte")
-            " Windows cmd.exe still uses cp850. If Windows ever moved to
-            " Powershell as the primary terminal, this would be utf-8
-            set termencoding=cp850
-            " Let Vim use utf-8 internally, because many scripts require this
-            set encoding=utf-8
-            setglobal fileencoding=utf-8
-            " Windows has traditionally used cp1252, so it's probably wise to
-            " fallback into cp1252 instead of eg. iso-8859-15.
-            " Newer Windows files might contain utf-8 or utf-16 LE so we might
-            " want to try them first.
-            set fileencodings=ucs-bom,utf-8,utf-16le,cp1252,iso-8859-15
-          endif
-        endif
     " }
 
     " Setup Bundle Support {
@@ -103,7 +62,9 @@
     " my bundles {
         if count(g:spf13_bundle_groups, 'my_bundle')
             " {
-            Bundle 'codota/tabnine-vim'
+            "Bundle 'codota/tabnine-vim'
+            
+            Bundle 'neoclide/coc.nvim'
             " syntax highlighting(and more) for typescript
             " {
                 Bundle 'leafgarland/typescript-vim'
@@ -131,6 +92,12 @@
             Bundle 'matchit.zip'
             Bundle 'vim-airline/vim-airline'
             Bundle 'vim-airline/vim-airline-themes'
+
+            " For nvim-bufferline
+            " {
+            "Bundle 'kyazdani42/nvim-web-devicons'
+            "Bundle 'akinsho/nvim-bufferline.lua'
+            " }
             Bundle 'bling/vim-bufferline'
             Bundle 'easymotion/vim-easymotion'
             Bundle 'nathanaelkane/vim-indent-guides'
