@@ -63,8 +63,12 @@
         if count(g:spf13_bundle_groups, 'my_bundle')
             " {
             "Bundle 'codota/tabnine-vim'
-            
             Bundle 'neoclide/coc.nvim'
+            " add desired extensions to the following global variable
+            " coc-tsserver: javascript
+            " coc-pyright: python
+            " coc-clangd: c/c++, may need to install clangd seperatly
+            let g:coc_global_extensions = ['coc-pyright']
             " syntax highlighting(and more) for typescript
             " {
                 Bundle 'leafgarland/typescript-vim'
