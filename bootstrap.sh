@@ -15,6 +15,7 @@
 #   limitations under the License.
 
 ############################  SETUP PARAMETERS
+
 app_name='spf13-vim'
 [ -z "$APP_PATH" ] && APP_PATH="$HOME/.spf13-vim-3"
 [ -z "$REPO_URI" ] && REPO_URI='https://github.com/Donaldttt/spf13-vim.git'
@@ -112,7 +113,6 @@ sync_repo() {
         ret="$?"
         success "Successfully updated $repo_name"
     fi
-
     debug
 }
 
@@ -124,10 +124,6 @@ create_symlinks() {
     lnif "$source_path/.vimrc.bundles" "$target_path/.vimrc.bundles"
     lnif "$source_path/.vim"           "$target_path/.vim"
 
-    if program_exists "nvim"; then
-        lnif "$source_path/.vim"       "$target_path/.config/nvim"
-        lnif "$source_path/.vimrc"     "$target_path/.config/nvim/init.vim"
-    fi
 
     ret="$?"
     success "Setting up vim symlinks."
@@ -151,6 +147,20 @@ setup_vundle() {
     debug
 }
 
+set_up_nvim() {
+  nvim_config="$HOME/.config/nvim/init.vim"
+  if program_exists "nvim"; then
+    msg "Found neovim."
+    if [[ -f $nvim_config ]]; then
+      msg "Found init.vim. backing up it"
+      mv $nvim_config "${nvim_config}.backup"
+    fi
+    echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath=&runtimepath
+source ~/.vimrc" > $nvim_config
+  fi
+}
+
 ############################ MAIN()
 variable_set "$HOME"
 program_must_exist "vim"
@@ -169,6 +179,6 @@ sync_repo       "$HOME/.vim/bundle/vundle" \
                 "master" \
                 "vundle"
 
+set_up_nvim
 
 msg             "\nThanks for installing $app_name."
-msg             "© `date +%Y` http://vim.spf13.com/"
