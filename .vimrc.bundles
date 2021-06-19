@@ -65,6 +65,11 @@
             "Bundle 'codota/tabnine-vim'
             
             Bundle 'neoclide/coc.nvim'
+            "{
+                Bundle 'vim-python/python-syntax'
+                let g:python_highlight_all = 1
+            "}
+
             " syntax highlighting(and more) for typescript
             " {
                 Bundle 'leafgarland/typescript-vim'
@@ -84,7 +89,8 @@
             Bundle 'rhysd/conflict-marker.vim'
             " {
             Bundle 'jiangmiao/auto-pairs'
-            let g:AutoPairs = {'(':')', '[':']', '{':'}'}
+            let g:AutoPairsFlyMode = 1
+            
             " }
             " {
             Bundle 'mg979/vim-visual-multi'
