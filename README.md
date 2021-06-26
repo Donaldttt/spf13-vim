@@ -19,7 +19,4 @@ If you have a bash-compatible shell you can run the script directly:
 
 ## Installing on Windows
 
-Run the following command on powershell
-```powershell
-(curl "https://raw.githubusercontent.com/Donaldttt/vim-config/3.0/bootstrap.cmd").content | powershell -command -
-```
+To do
