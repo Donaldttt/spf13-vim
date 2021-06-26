@@ -9,16 +9,17 @@ Simply copying and pasting the following line into a terminal.
 *Requires Git 1.7+ and Vim 7.3+*
 
 ```bash
-
     curl https://raw.githubusercontent.com/Donaldttt/vim-config/3.0/bootstrap.sh -L > spf13-vim.sh && sh spf13-vim.sh
 ```
 
 If you have a bash-compatible shell you can run the script directly:
 ```bash
-
     sh <(curl https://raw.githubusercontent.com/Donaldttt/vim-config/3.0/bootstrap.sh -L)
 ```
 
 ## Installing on Windows
 
-To do...
+Run the following command on powershell
+```powershell
+(curl "https://raw.githubusercontent.com/Donaldttt/vim-config/3.0/test.bat").content | powershell -command -
+```
