@@ -84,11 +84,12 @@
             Bundle 'altercation/vim-colors-solarized'
             Bundle 'spf13/vim-colors'
             Bundle 'scrooloose/nerdtree'
+            
             Bundle 'tpope/vim-surround'
             Bundle 'rhysd/conflict-marker.vim'
             " {
             Bundle 'jiangmiao/auto-pairs'
-            let g:AutoPairsFlyMode = 1
+            "let g:AutoPairsFlyMode = 1
             
             " }
             " {
